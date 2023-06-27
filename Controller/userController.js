@@ -22,16 +22,18 @@ const login = async (req, res) => {
     }
 
     // Generate JWT for the logged-in user
-    const token = jwt.sign({ userId: user._id }, "your-secret-key", {
+    const token = jwt.sign({ userId: user._id }, "my-key", {
       expiresIn: "1h",
     });
 
-    res.json({ token });
+    res.json({ token , user });
   } catch (err) {
     console.error("Login error", err);
     res.status(500).json({ error: "Login failed" });
   }
 };
+
+
 
 // User registration controller
 const register = async (req, res) => {
