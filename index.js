@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const mongoString = process.env.DB_URL;
 const userRouter = require("./routes/userRoutes");
 const taskRouter = require("./routes/taskRoutes")
-// const photoRouter = require("./routes/Photos");
+
 const app = express();
 const cors = require("cors");
 mongoose.connect(mongoString);
