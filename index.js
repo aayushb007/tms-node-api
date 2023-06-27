@@ -2,23 +2,24 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-
-
 const mongoString = process.env.DB_URL;
 const userRouter = require("./routes/userRoutes");
 const taskRouter = require("./routes/taskRoutes")
-
 const app = express();
 const cors = require("cors");
+//Connect MongoDB
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 database.on("error", (error) => {
   console.log(error);
 });
 
+//Testing Database Connection
 database.once("connected", () => {
   console.log("Database Connected");
 });
+
+//Middleware
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/user", userRouter);
