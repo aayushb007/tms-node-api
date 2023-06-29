@@ -6,7 +6,7 @@ const Task = require("../models/task");
 
 
 //Search a task using title or description
-router.get('/search', taskController.searchTasks);
+router.get('/search/:uid', taskController.searchTasks);
 // Create a new task
 router.post("/",authenticateToken, taskController.createTask);
 

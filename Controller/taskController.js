@@ -85,7 +85,9 @@ const deleteTask = async (req, res) => {
 const searchTasks = async (req, res) => {
   try {
     const searchQuery = req.query.q; // Get the search query from request query parameters
+    const userId = req.params.uid;
     const tasks = await Task.find({
+      user_id : userId,
       $or: [
         { title: { $regex: searchQuery, $options: "i" } }, // Case-insensitive search by title
         { desc: { $regex: searchQuery, $options: "i" } }, // Case-insensitive search by description
