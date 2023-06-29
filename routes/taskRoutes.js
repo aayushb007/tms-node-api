@@ -22,4 +22,6 @@ router.put("/:id",authenticateToken, taskController.updateTask);
 // Delete a task
 router.delete("/:id",authenticateToken, taskController.deleteTask);
 
+//Search a task using title or description
+router.get('/tasks/search', taskController.searchTasks);
 module.exports = router;

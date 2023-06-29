@@ -81,6 +81,21 @@ const deleteTask = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+// Search Tasks
+const searchTasks = async (req, res) => {
+  try {
+    const searchQuery = req.query.q; // Get the search query from request query parameters
+    const tasks = await Task.find({
+      $or: [
+        { title: { $regex: searchQuery, $options: "i" } }, // Case-insensitive search by title
+        { desc: { $regex: searchQuery, $options: "i" } }, // Case-insensitive search by description
+      ],
+    });
+    res.json(tasks);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   createTask,
@@ -89,4 +104,5 @@ module.exports = {
   updateTask,
   getTaskByUser,
   deleteTask,
+  searchTasks
 };
